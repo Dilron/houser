@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+import {HashRouter as Router, Switch, Route} from 'react-router-dom'
+import router from './router.js'
+import Header from './Components/Header/Header'
+import Dashboard from './Components/Dashboard/Dashboard'
+import Wizard1 from './Components/Wizard/Wizard1'
+import Wizard2 from './Components/Wizard/Wizard2'
+import Wizard3 from './Components/Wizard/Wizard3'
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app-wrap">
+        <Header/>
+        <div className="content-container">
+          <Switch>
+            <Route exact path='/' render={() => <Dashboard/>}/>
+            <Route path='/wizard1' render={() => <Wizard1/>}/>
+            <Route path='/wizard2' render={() => <Wizard2/>}/>
+            <Route path='/wizard3' render={() => <Wizard3/>}/>
+          </Switch>
+
+        </div>
+      </div>
+    </Router>
   );
 }
 
