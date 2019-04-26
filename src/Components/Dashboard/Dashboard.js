@@ -3,6 +3,7 @@ import House from '../House/House'
 import './Dashboard.css'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import store from '../../store'
 
 export default class Dashboard extends Component{
     constructor(props){
@@ -13,6 +14,12 @@ export default class Dashboard extends Component{
     }
 
     componentDidMount() {
+        store.subscribe(() => {
+            axios.get('/api/houses').then(res => {
+                this.setState({homes: res.data})
+            })
+            .catch(err => console.log('error in component did mount get houses: ', err))
+        })
         axios.get('/api/houses').then(res => {
             this.setState({homes: res.data})
         })

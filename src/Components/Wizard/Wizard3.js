@@ -23,7 +23,6 @@ export default class Wizard extends Component {
 
     clearStore = () => {
         store.dispatch({type: CLEARSTORE})
-        return <Redirect push to='/'/>
     }
 
     handleComplete = () => {
